@@ -1,0 +1,32 @@
+{
+  "name": "catch-pokemon",
+  "version": "0.0.0",
+  "description": "Algorithm to catch a pokemon",
+  "main": "index.js",
+  "repository": "https://github.com/bukinoshita/catch-pokemon.git",
+  "author": "Bu Kinoshita <bukinoshita@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "pokemon",
+    "catch",
+    "catch-pokemon",
+    "pokeball",
+    "algorithm"
+  ],
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "esnext": true,
+    "semicolon": false,
+    "space": true,
+    "rules": {
+      "no-mixed-operators": 0,
+      "object-curly-spacing": 0
+    }
+  }
+}
