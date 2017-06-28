@@ -46,35 +46,35 @@ Type: `object`
 
 ##### asleep
 
-Type: `boolean`
+Type: `boolean`<br/>
 Default: false
 
 Determine if pokemon is asleep
 
 ##### frozen
 
-Type: `boolean`
+Type: `boolean`<br/>
 Default: false
 
 Determine if pokemon is frozen
 
 ##### paralyzed
 
-Type: `boolean`
+Type: `boolean`<br/>
 Default: false
 
 Determine if pokemon is paralyzed
 
 ##### burned
 
-Type: `boolean`
+Type: `boolean`<br/>
 Default: false
 
 Determine if pokemon is burned
 
 ##### poisoned
 
-Type: `boolean`
+Type: `boolean`<br/>
 Default: false
 
 Determine if pokemon is poisoned
