@@ -4,12 +4,12 @@ const pokemonF = require('pokemon-f')
 const pokeballShake = require('pokeball-shake')
 const pokemonCaptureQuote = require('pokemon-capture-quote')
 const getPokemon = require('get-pokemon')
+const getPokeball = require('get-pokeball')
 
-const getPokeball = require('./lib/get-pokeball')
 const generateN = require('./lib/generate-n')
 const randomNumber = require('./lib/random-number')
 
-module.exports = (
+module.exports = async (
   pokemon,
   pokeball,
   {
@@ -20,51 +20,49 @@ module.exports = (
     poisoned = false
   } = {}
 ) => {
-  return new Promise((resolve, reject) => {
-    if (!pokemon || typeof pokemon !== 'string') {
-      reject(new TypeError('Pokemon is required'))
-    }
+  if (!pokemon || typeof pokemon !== 'string') {
+    throw new TypeError('Pokemon is required')
+  }
 
-    if (!pokeball || typeof pokeball !== 'string') {
-      reject(new TypeError('Pokeball is required'))
-    }
+  if (!pokeball || typeof pokeball !== 'string') {
+    throw new TypeError('Pokeball is required')
+  }
 
-    const { name, catchRate, hp } = getPokemon(pokemon.toLowerCase())
-    const { valueF, valueD } = getPokeball(pokeball.toLowerCase())
+  const { name, catchRate, hp } = getPokemon(pokemon.toLowerCase())
 
-    if (pokeball.toLowerCase() === 'masterball') {
-      reject(pokemonCaptureQuote(name, 'caught'))
-    }
+  if (pokeball.toLowerCase() === 'masterball') {
+    return pokemonCaptureQuote(name, 'caught')
+  }
 
-    let n
+  let n
 
-    if (pokeball.toLowerCase() === 'pokeball') {
-      n = generateN(pokeball)
-    } else if (pokeball.toLowerCase() === 'greatball') {
-      n = generateN(pokeball)
-    } else {
-      n = generateN(pokeball)
-    }
+  if (pokeball.toLowerCase() === 'pokeball') {
+    n = generateN(pokeball)
+  } else if (pokeball.toLowerCase() === 'greatball') {
+    n = generateN(pokeball)
+  } else {
+    n = generateN(pokeball)
+  }
 
-    if (
-      ((asleep || frozen) && n < 25) ||
-      ((paralyzed || burned || poisoned) && n < 12)
-    ) {
-      resolve(pokemonCaptureQuote(name, 'caught'))
-    }
+  if (
+    ((asleep || frozen) && n < 25) ||
+    ((paralyzed || burned || poisoned) && n < 12)
+  ) {
+    return pokemonCaptureQuote(name, 'caught')
+  }
 
-    if (n > catchRate) {
-      reject(pokemonCaptureQuote(name, 0))
-    }
+  if (n > catchRate) {
+    return pokemonCaptureQuote(name, 0)
+  }
 
-    const m = randomNumber(0, 255)
-    const f = pokemonF(hp, valueF, hp)
+  const ball = await getPokeball(pokeball.toLowerCase())
+  const m = randomNumber(0, 255)
+  const f = await pokemonF(hp, ball.value.f, hp)
 
-    if (f >= m) {
-      resolve(pokemonCaptureQuote(name, 'caught'))
-    }
+  if (f >= m) {
+    return pokemonCaptureQuote(name, 'caught')
+  }
 
-    const shakes = pokeballShake(catchRate, valueD, f)
-    reject(pokemonCaptureQuote(name, shakes))
-  })
+  const shakes = pokeballShake(catchRate, ball.value.d, f)
+  return pokemonCaptureQuote(name, shakes)
 }
