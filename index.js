@@ -27,10 +27,10 @@ module.exports = async (
     throw new TypeError('Pokeball is required')
   }
 
-  const { name, catchRate, hp } = getPokemon(pokemon.toLowerCase())
+  const pkm = await getPokemon(pokemon.toLowerCase())
 
   if (pokeball.toLowerCase() === 'masterball') {
-    return pokemonCaptureQuote(name, 'caught')
+    return pokemonCaptureQuote(pkm.name, 'caught')
   }
 
   let n
@@ -47,20 +47,20 @@ module.exports = async (
     ((asleep || frozen) && n < 25) ||
     ((paralyzed || burned || poisoned) && n < 12)
   ) {
-    return pokemonCaptureQuote(name, 'caught')
+    return pokemonCaptureQuote(pkm.name, 'caught')
   }
 
-  if (n > catchRate) {
-    return pokemonCaptureQuote(name, 0)
+  if (n > pkm.catchRate) {
+    return pokemonCaptureQuote(pkm.name, '0')
   }
 
   const m = randomNumber(0, 255)
-  const f = await pokemonF(hp, pokeball.toLowerCase(), hp)
+  const f = await pokemonF(pkm.hp, pokeball.toLowerCase(), pkm.hp)
 
   if (f >= m) {
-    return pokemonCaptureQuote(name, 'caught')
+    return pokemonCaptureQuote(pkm.name, 'caught')
   }
 
-  const shakes = pokeballShake(catchRate, pokeball.toLowerCase(), f)
-  return pokemonCaptureQuote(name, shakes)
+  const shakes = await pokeballShake(pkm.catchRate, pokeball.toLowerCase(), f)
+  return pokemonCaptureQuote(pkm.name, shakes.toString())
 }

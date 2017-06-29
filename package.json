@@ -6,7 +6,13 @@
   "repository": "https://github.com/bukinoshita/catch-pokemon.git",
   "author": "Bu Kinoshita <bukinoshita@gmail.com>",
   "license": "MIT",
-  "keywords": ["pokemon", "catch", "catch-pokemon", "pokeball", "algorithm"],
+  "keywords": [
+    "pokemon",
+    "catch",
+    "catch-pokemon",
+    "pokeball",
+    "algorithm"
+  ],
   "scripts": {
     "test": "xo && ava"
   },
@@ -25,6 +31,7 @@
     }
   },
   "dependencies": {
+    "got": "^7.0.0",
     "pokeball-shake": "^0.0.1",
     "pokemon-capture-quote": "^0.0.1",
     "pokemon-f": "^0.0.1"
