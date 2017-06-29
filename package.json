@@ -30,7 +30,6 @@
     }
   },
   "dependencies": {
-    "get-pokeball": "^0.0.1",
     "pokeball-shake": "^0.0.1",
     "pokemon-capture-quote": "^0.0.1",
     "pokemon-f": "^0.0.1"

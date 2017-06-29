@@ -3,9 +3,8 @@
 const pokemonF = require('pokemon-f')
 const pokeballShake = require('pokeball-shake')
 const pokemonCaptureQuote = require('pokemon-capture-quote')
-const getPokemon = require('get-pokemon')
-const getPokeball = require('get-pokeball')
 
+const getPokemon = require('./lib/get-pokemon')
 const generateN = require('./lib/generate-n')
 const randomNumber = require('./lib/random-number')
 
@@ -55,14 +54,13 @@ module.exports = async (
     return pokemonCaptureQuote(name, 0)
   }
 
-  const ball = await getPokeball(pokeball.toLowerCase())
   const m = randomNumber(0, 255)
-  const f = await pokemonF(hp, ball.value.f, hp)
+  const f = await pokemonF(hp, pokeball.toLowerCase(), hp)
 
   if (f >= m) {
     return pokemonCaptureQuote(name, 'caught')
   }
 
-  const shakes = pokeballShake(catchRate, ball.value.d, f)
+  const shakes = pokeballShake(catchRate, pokeball.toLowerCase(), f)
   return pokemonCaptureQuote(name, shakes)
 }
