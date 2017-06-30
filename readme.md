@@ -44,12 +44,6 @@ Pokeball's name
 
 Type: `object`
 
-##### name
-
-Type: `string`
-
-Pokemon's name
-
 ##### hp
 
 Type: `integer`
@@ -98,7 +92,7 @@ Default: false
 Determine if pokemon is poisoned
 
 
-If `name`, `hp` and `catchRate` are passed it won't look up for these information on API (faster). Otherwise, it will try to find the Pokemon on the API.
+If `hp` and `catchRate` are passed it won't look up for these information on API (faster). Otherwise, it will try to find the Pokemon on the API.
 
 
 ## Related

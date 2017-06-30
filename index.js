@@ -12,7 +12,6 @@ module.exports = async (
   pokemon,
   pokeball,
   {
-    name,
     hp,
     catchRate,
     asleep = false,
@@ -32,8 +31,8 @@ module.exports = async (
 
   let pkm
 
-  if (name && hp && catchRate) {
-    pkm = { name, hp, catchRate }
+  if (hp && catchRate) {
+    pkm = { name: pokemon, hp, catchRate }
   } else {
     pkm = await getPokemon(pokemon.toLowerCase())
   }
