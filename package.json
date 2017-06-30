@@ -1,6 +1,6 @@
 {
   "name": "catch-pokemon",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Algorithm to catch a pokemon",
   "main": "index.js",
   "repository": "https://github.com/bukinoshita/catch-pokemon.git",
