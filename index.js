@@ -12,6 +12,9 @@ module.exports = async (
   pokemon,
   pokeball,
   {
+    name,
+    hp,
+    catchRate,
     asleep = false,
     frozen = false,
     paralyzed = false,
@@ -27,7 +30,13 @@ module.exports = async (
     throw new TypeError('Pokeball is required')
   }
 
-  const pkm = await getPokemon(pokemon.toLowerCase())
+  let pkm
+
+  if (name && hp && catchRate) {
+    pkm = { name, hp, catchRate }
+  } else {
+    pkm = await getPokemon(pokemon.toLowerCase())
+  }
 
   if (pokeball.toLowerCase() === 'masterball') {
     return pokemonCaptureQuote(pkm.name, 'caught')
