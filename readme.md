@@ -48,13 +48,19 @@ Type: `object`
 
 Type: `string`
 
+Pokemon's name
+
 ##### hp
 
 Type: `integer`
 
+Pokemon's hp
+
 ##### catchRate
 
 Type: `integer`
+
+Pokemon's catch rate
 
 ##### asleep
 
